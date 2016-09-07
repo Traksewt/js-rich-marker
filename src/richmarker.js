@@ -118,6 +118,28 @@ RichMarker.prototype['getFlat'] = RichMarker.prototype.getFlat;
 
 
 /**
+ * Sets the pane for the marker.
+ *
+ * @param {string} the pane name for where the marker will be created.
+ */
+RichMarker.prototype.setPane = function(pane) {
+  this.set('pane', pane);
+};
+RichMarker.prototype['setPane'] = RichMarker.prototype.setPane;
+
+
+/**
+ * If the pane where the marker will be created.
+ *
+ * @return {string} the pane name of the marker.
+ */
+RichMarker.prototype.getPane = function() {
+  return /** @type {string} */ (this.get('pane'));
+};
+RichMarker.prototype['getPane'] = RichMarker.prototype.getPane;
+
+
+/**
  * Get the width of the marker.
  *
  * @return {Number} The width of the marker.
@@ -746,7 +768,8 @@ RichMarker.prototype.onAdd = function() {
 
   var panes = this.getPanes();
   if (panes) {
-    panes.overlayMouseTarget.appendChild(this.markerWrapper_);
+    var paneName = this.getPane() || 'overlayMouseTarget';
+    panes[paneName].appendChild(this.markerWrapper_);
   }
 
   google.maps.event.trigger(this, 'ready');
