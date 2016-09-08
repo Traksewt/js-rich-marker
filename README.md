@@ -10,6 +10,10 @@ A library for using arbitrary DOM elements as map markers in the Google Maps Jav
 
 Migrated from the [Google Maps JavaScript API utility libraries on Google Code](https://code.google.com/p/google-maps-utility-library-v3/).
 
+## Fork Improvements
+- added adding the marker to a specific pane
+- added ability to manipulate the optimize option for the marker (useful for zIndex to work properly)
+
 ## Live Demo
 
 [![RichMarker Screenshot](https://googlemaps.github.io/js-rich-marker/screenshot.jpg)](https://googlemaps.github.io/js-rich-marker/examples/richmarker.html)

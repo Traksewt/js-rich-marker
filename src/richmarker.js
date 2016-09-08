@@ -44,15 +44,19 @@ function RichMarker(opt_options) {
   this.dragging_ = false;
 
   if (opt_options['visible'] == undefined) {
-    opt_options['visible'] = true;
+    options['visible'] = true;
   }
 
   if (opt_options['shadow'] == undefined) {
-    opt_options['shadow'] = '7px -3px 5px rgba(88,88,88,0.7)';
+    options['shadow'] = '7px -3px 5px rgba(88,88,88,0.7)';
   }
 
   if (opt_options['anchor'] == undefined) {
-    opt_options['anchor'] = RichMarkerPosition['BOTTOM'];
+    options['anchor'] = RichMarkerPosition['BOTTOM'];
+  }
+
+  if (opt_options['optimized'] == undefined) {
+    options['optimized'] = true;
   }
 
   this.setValues(options);
@@ -126,6 +130,27 @@ RichMarker.prototype.setPane = function(pane) {
   this.set('pane', pane);
 };
 RichMarker.prototype['setPane'] = RichMarker.prototype.setPane;
+
+
+/**
+ * Checks if the marker is optimized. DEFAULT true.
+ *
+ * @return {boolean} the pane name of the marker.
+ */
+RichMarker.prototype.getOptimized = function() {
+  return /** @type {string} */ (this.get('optimized'));
+};
+RichMarker.prototype['getOptimized'] = RichMarker.prototype.getOptimized;
+
+/**
+ * Sets whether the marker is optimised.
+ *
+ * @param {boolean} if the marker is optimised.
+ */
+RichMarker.prototype.setOptimized = function(optimized) {
+  this.set('optimized', optimized);
+};
+RichMarker.prototype['setOptimized'] = RichMarker.prototype.setOptimized;
 
 
 /**
@@ -742,6 +767,8 @@ RichMarker.prototype.onAdd = function() {
   if (this.getZIndex()) {
     this.markerWrapper_.style['zIndex'] = this.getZIndex();
   }
+
+  this.markerWrapper_.style['optimized'] = this.getOptimized();
 
   this.markerWrapper_.style['display'] = this.getVisible() ? '' : 'none';
 
