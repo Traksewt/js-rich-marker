@@ -127,7 +127,18 @@ RichMarker.prototype['getFlat'] = RichMarker.prototype.getFlat;
  * @param {string} the pane name for where the marker will be created.
  */
 RichMarker.prototype.setPane = function(pane) {
+  var panes = this.getPanes();
+  if (panes) {
+    var paneName = this.getPane() || 'overlayMouseTarget';
+    panes[paneName].removeChild(this.markerWrapper_);
+  }
+
+
   this.set('pane', pane);
+  if (panes) {
+    var paneName = this.getPane() || 'overlayMouseTarget';
+    panes[paneName].appendChild(this.markerWrapper_);
+  }
 };
 RichMarker.prototype['setPane'] = RichMarker.prototype.setPane;
 
