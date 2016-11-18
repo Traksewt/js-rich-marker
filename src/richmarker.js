@@ -128,7 +128,7 @@ RichMarker.prototype['getFlat'] = RichMarker.prototype.getFlat;
  */
 RichMarker.prototype.setPane = function(pane) {
   var panes = this.getPanes();
-  if (panes) {
+  if (panes && this.markerWrapper_) {
     var paneName = this.getPane() || 'overlayMouseTarget';
     if (panes[paneName]) {
       panes[paneName].removeChild(this.markerWrapper_);
@@ -137,7 +137,7 @@ RichMarker.prototype.setPane = function(pane) {
 
 
   this.set('pane', pane);
-  if (panes) {
+  if (panes && this.markerWrapper_) {
     var paneName = this.getPane() || 'overlayMouseTarget';
     if (panes[paneName]) {
       panes[paneName].appendChild(this.markerWrapper_);
